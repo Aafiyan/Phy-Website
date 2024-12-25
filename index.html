@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: beige;
+        }
+        .home-screen, .quiz-screen, .result-screen {
+            padding: 20px;
+        }
+        .home-screen, .quiz-screen, .result-screen {
+            display: none;
+        }
+        .home-screen {
+            display: block;
+        }
+
+        .quiz-screen {
+            text-align: left;
+        }
+        .category-button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .category-button:hover {
+            background-color: #0056b3;
+        }
+        .option {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .option.correct {
+            background-color: green;
+        }
+        .option.incorrect {
+            background-color: red;
+        }
+        .stats {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-screen">
+        <h1>Welcome to the Physics Quiz</h1>
+        <p>Select a category to start:</p>
+        <button class="category-button" onclick="startQuiz('Acoustics,Ultrasonic and Dielectrics')">Acoustics, Ultrasonic, and Dielectrics</button>
+        <button class="category-button" onclick="startQuiz('Engineering Optics')">Engineering Optics</button>
+        <button class="category-button" onclick="startQuiz('Quantum Mechanics')">Quantum Mechanics</button>
+        <button class="category-button" onclick="startQuiz('Crystal Structure and Nuclear Physics')">Crystal Structure and Nuclear Physics</button>
+        <button class="category-button" onclick="startQuiz('Physics of Advanced Materials')">Physics of Advanced Materials</button>
+        <button class="category-button" onclick="startQuiz('Combined Test 1')">Combined Test 1</button>
+        <button class="category-button" onclick="startQuiz('Combined Test 2')">Combined Test 2</button>
+        <button class="category-button" onclick="startQuiz('Combined Test 3')">Combined Test 3</button>
+    </div>
+
+    <div class="quiz-screen">
+        <div class="stats">
+            <p>Total Questions: <span id="total-questions"></span></p>
+            <p>Questions Left: <span id="questions-left"></span></p>
+            <p>Correct Attempts: <span id="correct-attempts"></span></p>
+            <p>Incorrect Attempts: <span id="incorrect-attempts"></span></p>
+        </div>
+        <h2 id="quiz-title"></h2>
+        <p id="question"></p>
+        <div class="options"></div>
+        <div>
+            <button onclick="prevQuestion()">Prev</button>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+
+    <div class="result-screen">
+        <h2>Quiz Summary</h2>
+        <p id="summary"></p>
+        <button onclick="returnToHome()">Back to Home</button>
+    </div>
+
+    <script src="quiz-script.js"></script>
+</body>
+</html>
