@@ -999,9 +999,9 @@ function startQuiz(category) {
     incorrectAttempts = 0;
     incorrectQuestions = [];
     totalSeconds = 0;
-    selectedAnswers = {}; // Clear selected answers
+    selectedAnswers = {}; 
 
-    // Update UI
+
     document.getElementById("total-questions").textContent = `${currentQuiz.length}`;
     document.getElementById("questions-left").textContent = `${currentQuiz.length - currentIndex}/${currentQuiz.length}`;
     document.getElementById("correct-attempts").textContent = `0/${currentQuiz.length}`;
@@ -1011,7 +1011,7 @@ function startQuiz(category) {
     document.querySelector(".quiz-screen").style.display = "block";
     document.getElementById("quiz-title").textContent = category;
 
-    // Start timer and load the first question
+    
     startTimer();
     loadQuestion();
 }
@@ -1028,16 +1028,16 @@ function loadQuestion() {
             button.className = "option";
             button.textContent = option;
 
-            // Show the selected answer with its color
+           
             if (selectedAnswers[currentIndex] === option) {
                 button.classList.add(selectedAnswers[currentIndex] === questionData.answer ? "correct" : "incorrect");
                 button.disabled = true;
             }
 
-            // Disable multiple responses
+            
             button.onclick = () => {
                 if (!selectedAnswers.hasOwnProperty(currentIndex)) {
-                    selectedAnswers[currentIndex] = option; // Save selected answer
+                    selectedAnswers[currentIndex] = option; 
                     checkAnswer(button, questionData);
                 }
             };
@@ -1095,7 +1095,7 @@ function endQuiz() {
 }
 
 function showSummary() {
-    clearInterval(timerInterval); // Stop the timer
+    clearInterval(timerInterval);
 
     document.querySelector(".quiz-screen").style.display = "none";
     document.querySelector(".result-screen").style.display = "block";
@@ -1105,9 +1105,9 @@ function showSummary() {
     const incorrectPercentage = ((incorrectAttempts / currentQuiz.length) * 100).toFixed(2);
     const unattemptedPercentage = ((unattempted / currentQuiz.length) * 100).toFixed(2);
 
-    const totalTime = formatTime(totalSeconds); // Format the total time taken
+    const totalTime = formatTime(totalSeconds);
 
-    // Create the summary HTML
+   
     let summaryHTML = `
         <p>Total Questions: ${currentQuiz.length}</p>
         <p>Correct Attempts: ${correctAttempts}</p>
@@ -1116,7 +1116,7 @@ function showSummary() {
         <p>Time Taken: ${totalTime}</p>
     `;
 
-    // Add incorrect questions with correct answers
+    
     if (incorrectQuestions.length > 0) {
         summaryHTML += `<h3>Incorrect Questions</h3>`;
         incorrectQuestions.forEach((item) => {
@@ -1126,10 +1126,10 @@ function showSummary() {
 
     document.getElementById("summary").innerHTML = summaryHTML;
 
-    // Update the pie chart for results
+    
     const ctx = document.getElementById("result-chart").getContext("2d");
     if (window.resultChart) {
-        window.resultChart.destroy(); // Destroy the previous chart instance
+        window.resultChart.destroy(); 
     }
     window.resultChart = new Chart(ctx, {
         type: "pie",
@@ -1170,24 +1170,43 @@ function formatTime(seconds) {
 }
 
 function restartQuiz() {
-    // Restart the quiz with the same category
+    
     startQuiz(document.getElementById("quiz-title").textContent);
 }
 
 function retryIncorrectQuestions() {
-    // Start a new quiz with only incorrect questions
-    currentQuiz = incorrectQuestions.map(q => ({
-        question: q.question,
-        options: quizData[currentQuiz.category].find(q => q.question === q.question).options,
-        answer: q.correctAnswer
-    }));
+    if (incorrectQuestions.length === 0) {
+        alert("No incorrect questions to retry!");
+        return;
+    }
 
+    // Prepare the quiz with only the incorrect questions
+    currentQuiz = incorrectQuestions.map(item => {
+        const originalQuestion = quizData[document.getElementById("quiz-title").textContent]
+            .find(q => q.question === item.question);
+        
+        return {
+            question: item.question,
+            options: originalQuestion.options,
+            answer: item.correctAnswer
+        };
+    });
+
+    // Reset all variables for the new quiz
     currentIndex = 0;
     correctAttempts = 0;
     incorrectAttempts = 0;
     incorrectQuestions = [];
     totalSeconds = 0;
     selectedAnswers = {}; // Clear selected answers
+
+    // Update UI and start the timer
+    document.getElementById("total-questions").textContent = `${currentQuiz.length}`;
+    document.getElementById("questions-left").textContent = `${currentQuiz.length}/${currentQuiz.length}`;
+    document.getElementById("correct-attempts").textContent = `0/${currentQuiz.length}`;
+    document.getElementById("incorrect-attempts").textContent = `0/${currentQuiz.length}`;
+    document.querySelector(".result-screen").style.display = "none";
+    document.querySelector(".quiz-screen").style.display = "block";
 
     startTimer();
     loadQuestion();
