@@ -5,47 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physics Quiz</title>
     <style>
-        /* Existing styles ... */
+        /* Body with a purple gradient background and centered content */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #6a5acd, #836fff); /* Purple gradient */
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Quiz container with a light purple gradient and center alignment */
         .quiz-container {
             width: 100%;
             max-width: 700px;
             padding: 30px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #e0b3ff, #d9a9ff); /* Light purple gradient */
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
             position: relative;
-            color: #333;
-            display:flex;
-            centre:alingn;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Update for restart button */
-        .restart-btn {
-            margin-top: 20px;
-            padding: 12px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .restart-btn:hover {
-            background-color: #218838;
-        }
-
-        .home-screen, .quiz-screen, .result-screen {
-            display: none;
-        }
-
-        .home-screen {
-            display: block;
-        }
-
-        .category-button, .option, .control-button {
+        .restart-btn, .category-button, .option, .control-button {
             margin: 15px 0;
             padding: 12px 20px;
             background-color: #007bff;
@@ -57,28 +46,8 @@
             transition: background-color 0.3s ease;
         }
 
-        .category-button:hover, .option:hover, .control-button:hover {
+        .restart-btn:hover, .category-button:hover, .option:hover, .control-button:hover {
             background-color: #0056b3;
-        }
-
-        .quiz-screen .options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .option {
-            width: 90%;
-            max-width: 500px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
         }
 
         .option.correct {
@@ -87,11 +56,6 @@
 
         .option.incorrect {
             background-color: #dc3545;
-        }
-
-        .stats {
-            text-align: left;
-            margin-bottom: 30px;
         }
 
         .stats p {
@@ -117,23 +81,8 @@
             background-color: #c82333;
         }
 
-        .control-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .control-buttons .next-btn {
-            margin-left: auto;
-        }
-
         .result-screen {
-            text-align: left;
-        }
-
-        .control-button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+            text-align: center;
         }
 
         canvas {
@@ -174,7 +123,7 @@
                 <button class="control-button prev-btn" onclick="prevQuestion()">Prev</button>
                 <button class="control-button next-btn" onclick="nextQuestion()">Next</button>
             </div>
-            <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button> <!-- Added Restart Button -->
+            <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
         </div>
 
         <div class="result-screen">
@@ -182,9 +131,9 @@
             <p id="summary"></p>
             <canvas id="result-chart" width="400" height="400"></canvas>
             <button class="control-button" onclick="returnToHome()">Back to Home</button>
-            <button class="control-button" onclick="retryIncorrectQuestions()">Retry Incorrect Questions</button> <!-- Button to retry incorrect questions -->
+            <button class="control-button" onclick="retryIncorrectQuestions()">Retry Incorrect Questions</button>
         </div>
-
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="quiz-script.js"></script>
 </body>
