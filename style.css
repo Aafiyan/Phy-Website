@@ -1,0 +1,165 @@
+/* General Page Setup */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6a0dad, #b066ff);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centered Quiz Container */
+.quiz-container {
+  width: 90%;
+  max-width: 700px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  color: #333;
+}
+
+/* Home, Quiz, and Result Screens */
+.home-screen,
+.quiz-screen,
+.result-screen {
+  display: none;
+}
+
+.home-screen {
+  display: block;
+}
+
+/* Category & Control Buttons */
+.category-button,
+.option,
+.control-button {
+  margin: 10px 0;
+  padding: 12px 20px;
+  background-color: #8a2be2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.category-button:hover,
+.option:hover,
+.control-button:hover {
+  background-color: #6a0dad;
+  transform: scale(1.03);
+}
+
+/* Quiz Options */
+.quiz-screen .options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  width: 100%;
+}
+
+/* Individual Option Buttons */
+.option {
+  width: 100%;
+  max-width: 550px; /* fixed width so it looks balanced */
+  min-height: 55px; /* consistent height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8a2be2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.option:hover {
+  background-color: #6a0dad;
+  transform: scale(1.03);
+}
+
+
+.option.correct {
+  background-color: #4caf50 !important;}
+
+.option.incorrect {
+  background-color: #e63946 !important;
+}
+
+/* Stats Section */
+.stats {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.stats p {
+  margin: 6px 0;
+  font-size: 1.1rem;
+}
+
+/* Control Buttons */
+.control-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.control-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* End Quiz Button */
+.end-quiz-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background-color: #e63946;
+  border-radius: 8px;
+}
+
+.end-quiz-btn:hover {
+  background-color: #c82333;
+}
+
+/* Restart Button */
+.restart-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.restart-btn:hover {
+  background-color: #5e1b87;
+}
+
+/* Result Screen */
+.result-screen {
+  text-align: left;
+}
+
+/* Chart */
+canvas {
+  margin: 20px auto;
+  display: block;
+}
